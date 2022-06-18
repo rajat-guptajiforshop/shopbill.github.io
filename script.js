@@ -40,10 +40,10 @@ function Gold()
   document.write("<br>");
   if(e<0)
   {
-    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp    Discount:'+(e*-1));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp    Discount:'+(e*-1));
 
        document.write("<br>");
-  document.write('Total Value'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
+  document.write('Total Value:'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
   }
    if(e>0)
   {
@@ -108,10 +108,10 @@ d=document.getElementById("date").value;
   document.write("<br>");
   if(e<0)
   {
-    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp    Discount:'+(e*-1));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp    Discount:'+(e*-1));
 
        document.write("<br>");
-  document.write('Total Value'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
+  document.write('Total Value:'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
   }
    if(e>0)
   {
@@ -227,7 +227,7 @@ function gstn()
 
    document.write('TYPE &nbsp &nbsp &nbsp &nbsp Weight &nbsp &nbsp &nbsp &nbsp rate &nbsp &nbsp &nbsp &nbsp Amount');
               document.write("<br>");    
-  document.write(' rnament'+'&nbsp &nbsp &nbsp &nbsp '+w+'gm'+'&nbsp &nbsp &nbsp &nbsp'+r+'&nbsp &nbsp &nbsp &nbsp  '+amtw);
+  document.write('ornament'+'&nbsp &nbsp &nbsp &nbsp '+w+'gm'+'&nbsp &nbsp &nbsp &nbsp'+r+'&nbsp &nbsp &nbsp &nbsp  '+amtw);
    
 
    document.write("<br>");   document.write("<br>");  
