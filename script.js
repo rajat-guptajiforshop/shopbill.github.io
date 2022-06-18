@@ -238,7 +238,7 @@ function gstn()
   document.write("<br>");
 
   
-    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp    Other Charges:'+(e));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp Other Charges:'+(e));
 
        document.write("<br>");
   document.write('Total Value:'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   Total Value:'+(amtadoe));
