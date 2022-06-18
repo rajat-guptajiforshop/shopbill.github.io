@@ -139,7 +139,7 @@ function Weight()
         
 
   var amtw=Math.round(w*r);
-  if(m===null||!m||m.value!==""){
+  if(m===null||!m||m.value==""){
     m=0;
   }
   var amtm=parseInt(amtw)+parseInt(m);
