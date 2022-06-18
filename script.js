@@ -40,14 +40,14 @@ function Gold()
   document.write("<br>");
   if(e<0)
   {
-    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp  Discount:'+(e*-1));
+    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp    Discount:'+(e*-1));
 
        document.write("<br>");
   document.write('Total Value'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
   }
    if(e>0)
   {
-    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp Other Charges:'+(e));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp   Other Charges:'+(e));
 
        document.write("<br>");
   document.write('Total Value:'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   Total Value:'+(amtadoe));
@@ -108,14 +108,14 @@ d=document.getElementById("date").value;
   document.write("<br>");
   if(e<0)
   {
-    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp  Discount:'+(e*-1));
+    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp    Discount:'+(e*-1));
 
        document.write("<br>");
   document.write('Total Value'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
   }
    if(e>0)
   {
-    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp Other Charges:'+(e));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp   Other Charges:'+(e));
 
        document.write("<br>");
   document.write('Total Value:'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   Total Value:'+(amtadoe));
@@ -172,7 +172,7 @@ function Weight()
   
   document.write("<br>");
   
-    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp Other Charges:'+(m));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp   Other Charges:'+(m));
 
        document.write("<br>");
   document.write('Total Value:'+(total)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtm));
@@ -236,21 +236,14 @@ function gstn()
    document.write("<br>");   document.write("<br>");  
   
   document.write("<br>");
-  if(e<0)
-  {
-    document.write('Total Tax'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp  Discount:'+(e*-1));
 
-       document.write("<br>");
-  document.write('Total Value'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtadoe));
-  }
-   if(e>0)
-  {
-    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp Other Charges:'+(e));
+  
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp    Other Charges:'+(e));
 
        document.write("<br>");
   document.write('Total Value:'+(t*2+amtadoe)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   Total Value:'+(amtadoe));
     
-  }
+  
  
    document.write("<br>");
   document.write('&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp   Tax:'+(t));
