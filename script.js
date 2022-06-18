@@ -172,7 +172,7 @@ function Weight()
   
   document.write("<br>");
   
-    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp   Other Charges:'+(m));
+    document.write('Total Tax:'+2*t+'&nbsp &nbsp &nbsp &nbsp Other Charges:'+(m));
 
        document.write("<br>");
   document.write('Total Value:'+(total)+'&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp Total Value:'+(amtm));
@@ -251,6 +251,6 @@ function gstn()
   document.write('&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp     &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp   Tax:'+(t));
 
   document.write("<br>");
-  document.write('&nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp    Total Value:'+(t*2+amtadoe));
+  document.write('&nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp    Total Value:'+(t*2+amtadoe));
  
 }
