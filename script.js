@@ -2,7 +2,8 @@ function Gold()
 {  
       var amt = document.getElementById("firstNumber").value;
         var r = document.getElementById("secondNumber").value;
-        var wa=amt/(1.03*r);
+        r=7500;
+      var wa=amt/(1.03*r);
   var w=parseFloat(wa).toFixed(2);
   var amtw=Math.round(w*r);
   var e=Math.round(amt/1.03)-amtw;
@@ -69,7 +70,8 @@ function Silver()
 { 
          var amt = document.getElementById("firstNumber").value;
         var r = document.getElementById("secondNumber").value;
-        var wa=amt/(1.03*r);
+        r=102 ;
+      var wa=amt/(1.03*r);
   var w=wa.toFixed(1);
   w=Math.round(wa*2+0.5)/2
   var amtw=Math.round(w*r);
