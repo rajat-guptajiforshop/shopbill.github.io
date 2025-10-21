@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html lang="hi">
+
+  <!-- Add this button under your output container -->
+<div style="text-align: center; margin-top: 10px;">
+  <button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<script>
+// Function to generate PDF from your output div
+function downloadPDF() {
+  const element = document.getElementById('output');
+  if (!element.innerHTML.trim()) {
+    alert('कृपया पहले कैलकुलेट करें।');
+    return;
+  }
+  var opt = {
+    margin:       1,
+    filename:     'SwetaJewellers_Bill.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+}
+</script>
+
 <head>
   <meta charset="utf-8" />
   <title>SWETA JEWELLERS</title>
@@ -124,7 +149,7 @@
       gold: ['firstNumber', 'secondNumber', 'weight', 'date', 'billno'],
       silver: ['firstNumber', 'secondNumber', 'weight', 'date', 'billno'],
       weight: ['secondNumber', 'weight', 'making', 'date', 'billno'],
-      gstn: ['firstNumber', 'secondNumber', 'weight']
+      gstn: ['firstNumber', 'secondNumber', 'weight', 'date', 'billno']
     };
 
     // Map buttons to function names
