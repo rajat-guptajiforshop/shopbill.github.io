@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
 
-  <!-- Add this button under your output container -->
-<div style="text-align: center; margin-top: 10px;">
-  <button onclick="downloadPDF()">Download PDF</button>
-</div>
-
-<script>
-// Function to generate PDF from your output div
-function downloadPDF() {
-  const element = document.getElementById('output');
-  if (!element.innerHTML.trim()) {
-    alert('कृपया पहले कैलकुलेट करें।');
-    return;
-  }
-  var opt = {
-    margin:       1,
-    filename:     'SwetaJewellers_Bill.pdf',
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-  };
-  html2pdf().set(opt).from(element).save();
-}
-</script>
 
 <head>
   <meta charset="utf-8" />
@@ -206,7 +183,7 @@ function downloadPDF() {
     function Gold() {
       var amt = document.getElementById("firstNumber").value;
       var r = document.getElementById("secondNumber").value;
-      var wa = amt / (1.03 * r);
+      var wa =  document.getElementById("weight").value==null?amt / (1.03 * r): document.getElementById("weight").value;
       var w = parseFloat(wa).toFixed(2);
       var amtw = Math.round(w * r);
       var e = Math.round(amt / 1.03) - amtw;
@@ -244,7 +221,7 @@ function downloadPDF() {
     function Silver() {
       var amt = document.getElementById("firstNumber").value;
       var r = document.getElementById("secondNumber").value;
-      var wa = amt / (1.03 * r);
+      var wa =  document.getElementById("weight").value==null?amt / (1.03 * r): document.getElementById("weight").value;
       var w = Math.round(wa * 2 + 0.5) / 2;
       var amtw = Math.round(w * r);
       var e = Math.round(amt / 1.03) - amtw;
