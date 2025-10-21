@@ -1,31 +1,246 @@
 <!DOCTYPE html>
-<html> 
+<html lang="hi">
 <head>
-  <h1>जिस चिज को खली रखना है रख दो</h1>
-<meta charset=utf-8 />
-<title>SWETA JEWELLERS </title>
-<style type="text/css">
-body {margin: 30px;}
-</style> 
-  <script src="script.js"></script>
+  <meta charset="utf-8" />
+  <title>SWETA JEWELLERS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #fff8f0;
+      color: #4a4a4a;
+    }
+
+    h1 {
+      color: #b77218;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    form label, form input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    form label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #d4af37;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="button"] {
+      background-color: #b77218;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px 3px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="button"]:hover {
+      background-color: #9a5e12;
+    }
+
+    .output-container {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fffae6;
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+      font-size: 15px;
+      color: #4a4a4a;
+      white-space: pre-wrap;
+    }
+
+    .output-container h2 {
+      text-align: center;
+      color: #b77218;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
-  <h1>
-<form>
-राशि : <input type="text" id="firstNumber" /><br>
-भाव:    <input type="text" id="secondNumber" /><br>
+  <h1>जिस चिज को खली रखना है रख दो</h1>
 
- वजन: <input type="text" id="weight" /><br>
-मेकिंग चार्ज:    <input type="text" id="making" /><br>
- Date: <input type="text" id="date" name="Date"><br>
- Billno: <input type="text" id="billno" name="billno"><br>
-<input type="button" onClick="Gold()" Value="सोना" />
-<input type="button" onClick="Silver()" Value="चांदी" />
-   <input type="button" onClick="Weight()" Value="वजन पता है" />
-  <input type="button" onClick="gstn()" Value="जीएसटी नहीं दूंगा" />
+  <form id="jewellerForm">
+    <label>राशि : <input type="text" id="firstNumber" /></label>
+    <label>भाव: <input type="text" id="secondNumber" /></label>
+    <label>वजन: <input type="text" id="weight" /></label>
+    <label>मेकिंग चार्ज: <input type="text" id="making" /></label>
+    <label>Date: <input type="text" id="date" name="Date"></label>
+    <label>Billno: <input type="text" id="billno" name="billno"></label>
 
-</form>
+    <input type="button" onClick="Gold()" value="सोना" />
+    <input type="button" onClick="Silver()" value="चांदी" />
+    <input type="button" onClick="Weight()" value="वजन पता है" />
+    <input type="button" onClick="gstn()" value="जीएसटी नहीं दूंगा" />
+  </form>
 
-  </h1>
+  <div class="output-container" id="output"></div>
+
+  <script>
+    function outputResult(text) {
+      document.getElementById('output').innerHTML = text;
+    }
+
+    function Gold() {
+      var amt = document.getElementById("firstNumber").value;
+      var r = document.getElementById("secondNumber").value;
+      var wa = amt / (1.03 * r);
+      var w = parseFloat(wa).toFixed(2);
+      var amtw = Math.round(w * r);
+      var e = Math.round(amt / 1.03) - amtw;
+      var amtadoe = amtw + e;
+      var t = Math.round(amtadoe * 0.015);
+      var d = document.getElementById("date").value;
+      var bn = document.getElementById("billno").value;
+
+      if (2 * t + amtadoe != amt) {
+        e = e + (amt - (amtadoe + 2 * t));
+        amtadoe = amtw + e;
+      }
+
+      let output = '<h2>Sweta Jewellers</h2>';
+      output += '<div><b>Date:</b> ' + d + '</div>';
+      output += '<div><b>Billno:</b> ' + bn + '</div><br>';
+      output += 'TYPE &nbsp;&nbsp;&nbsp; Weight &nbsp;&nbsp;&nbsp; rate &nbsp;&nbsp;&nbsp; Amount<br>';
+      output += 'Gold Ornament &nbsp;&nbsp;&nbsp; ' + w + ' gm &nbsp;&nbsp;&nbsp; ' + r + ' &nbsp;&nbsp;&nbsp; ' + amtw + '<br><br><br><br>';
+
+      if (e < 0) {
+        output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp;&nbsp;&nbsp; Discount: ' + (e * -1) + '<br>';
+        output += 'Total Value: ' + (t * 2 + amtadoe) + ' &nbsp;&nbsp;&nbsp;&nbsp; Total Value: ' + amtadoe + '<br>';
+      } else if (e > 0) {
+        output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp;&nbsp;&nbsp; Other Charges: ' + e + '<br>';
+        output += 'Total Value: ' + (t * 2 + amtadoe) + ' &nbsp;&nbsp;&nbsp;&nbsp; Total Value: ' + amtadoe + '<br>';
+      }
+
+      output += 'Tax: ' + t + '<br>';
+      output += 'Tax: ' + t + '<br>';
+      output += 'Total Value: ' + (t * 2 + amtadoe);
+
+      outputResult(output);
+    }
+
+    function Silver() {
+      var amt = document.getElementById("firstNumber").value;
+      var r = document.getElementById("secondNumber").value;
+      var wa = amt / (1.03 * r);
+      var w = Math.round(wa * 2 + 0.5) / 2;
+      var amtw = Math.round(w * r);
+      var e = Math.round(amt / 1.03) - amtw;
+      var amtadoe = amtw + e;
+      var t = Math.round(amtadoe * 0.015);
+
+      if (2 * t + amtadoe != amt) {
+        e = e + (amt - (amtadoe + 2 * t));
+        amtadoe = amtw + e;
+      }
+      var d = document.getElementById("date").value;
+      var bn = document.getElementById("billno").value;
+
+      let output = '<h2>Sweta Jewellers</h2>';
+      output += '<div><b>Date:</b> ' + d + '</div>';
+      output += '<div><b>Billno:</b> ' + bn + '</div><br>';
+      output += 'TYPE &nbsp;&nbsp;&nbsp; Weight &nbsp;&nbsp;&nbsp; rate &nbsp;&nbsp;&nbsp; Amount<br>';
+      output += 'Gold Ornament &nbsp;&nbsp;&nbsp; ' + w + ' gm &nbsp;&nbsp;&nbsp; ' + r + ' &nbsp;&nbsp;&nbsp; ' + amtw + '<br><br><br><br>';
+
+      if (e < 0) {
+        output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp;&nbsp;&nbsp; Discount: ' + (e * -1) + '<br>';
+        output += 'Total Value: ' + (t * 2 + amtadoe) + ' &nbsp;&nbsp;&nbsp;&nbsp; Total Value: ' + amtadoe + '<br>';
+      } else if (e > 0) {
+        output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp;&nbsp;&nbsp; Other Charges: ' + e + '<br>';
+        output += 'Total Value: ' + (t * 2 + amtadoe) + ' &nbsp;&nbsp;&nbsp;&nbsp; Total Value: ' + amtadoe + '<br>';
+      }
+
+      output += 'Tax: ' + t + '<br>';
+      output += 'Tax: ' + t + '<br>';
+      output += 'Total Value: ' + (t * 2 + amtadoe);
+
+      outputResult(output);
+    }
+
+    function Weight() {
+      var w = document.getElementById("weight").value;
+      var r = document.getElementById("secondNumber").value;
+      var m = document.getElementById("making").value;
+      if (!m) m = 0;
+
+      var amtw = Math.round(w * r);
+      var amtm = parseInt(amtw) + parseInt(m);
+      var t = Math.round(amtm * 0.015);
+      var total = amtm + t + t;
+      var d = document.getElementById("date").value;
+      var bn = document.getElementById("billno").value;
+
+      let output = '<h2>Sweta Jewellers</h2>';
+      output += '<div><b>Date:</b> ' + d + '</div>';
+      output += '<div><b>Billno:</b> ' + bn + '</div><br>';
+      output += 'TYPE &nbsp;&nbsp;&nbsp; Weight &nbsp;&nbsp;&nbsp; rate &nbsp;&nbsp;&nbsp; Amount<br>';
+      output += 'Ornament &nbsp;&nbsp;&nbsp; ' + w + ' gm &nbsp;&nbsp;&nbsp; ' + r + ' &nbsp;&nbsp;&nbsp; ' + amtw + '<br><br><br><br>';
+
+      output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp;&nbsp;&nbsp; Other Charges: ' + m + '<br>';
+      output += 'Total Value: ' + total + ' &nbsp;&nbsp;&nbsp;&nbsp; Total Value: ' + amtm + '<br>';
+      output += 'Tax: ' + t + '<br>';
+      output += 'Tax: ' + t + '<br>';
+      output += 'Total Value: ' + total;
+
+      outputResult(output);
+    }
+
+    function gstn() {
+      var amt = document.getElementById("firstNumber").value;
+      var r = document.getElementById("secondNumber").value;
+      var w = document.getElementById("weight").value;
+
+      var amtw = Math.round(w * r);
+      var e = Math.round(amt / 1.03) - amtw;
+      var amtadoe = amtw + e;
+      var t = Math.round(amtadoe * 0.015);
+      var d = document.getElementById("date").value;
+      var bn = document.getElementById("billno").value;
+
+      if (2 * t + amtadoe != amt) {
+        e = e + (amt - (amtadoe + 2 * t));
+        amtadoe = amtw + e;
+      }
+
+      let output = '<h2>Sweta Jewellers</h2>';
+      output += '<div><b>Date:</b> ' + d + '</div>';
+      output += '<div><b>Billno:</b> ' + bn + '</div><br>';
+      output += 'TYPE &nbsp;&nbsp;&nbsp; Weight &nbsp;&nbsp;&nbsp; rate &nbsp;&nbsp;&nbsp; Amount<br>';
+      output += 'ornament &nbsp;&nbsp;&nbsp; ' + w + ' gm &nbsp;&nbsp;&nbsp; ' + r + ' &nbsp;&nbsp;&nbsp; ' + amtw + '<br><br><br><br>';
+
+      output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp; Other Charges: ' + e + '<br>';
+      output += 'Total Value: ' + (t * 2 + amtadoe) + ' &nbsp;&nbsp;&nbsp;&nbsp; Total Value: ' + amtadoe + '<br>';
+      output += 'Tax: ' + t + '<br>';
+      output += 'Tax: ' + t + '<br>';
+      output += 'Total Value: ' + (t * 2 + amtadoe);
+
+      outputResult(output);
+    }
+  </script>
 </body>
 </html>
