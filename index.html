@@ -109,7 +109,7 @@
     function Gold() {
       var amt = document.getElementById("firstNumber").value;
       var r = document.getElementById("secondNumber").value;
-      var wa = amt / (1.03 * r);
+      var wa = document.getElementById("weight").value==null?amt / (1.03 * r):document.getElementById("weight").value;;
       var w = parseFloat(wa).toFixed(2);
       var amtw = Math.round(w * r);
       var e = Math.round(amt / 1.03) - amtw;
@@ -147,7 +147,7 @@
     function Silver() {
       var amt = document.getElementById("firstNumber").value;
       var r = document.getElementById("secondNumber").value;
-      var wa = amt / (1.03 * r);
+    var wa = document.getElementById("weight").value==null?amt / (1.03 * r):document.getElementById("weight").value;
       var w = Math.round(wa * 2 + 0.5) / 2;
       var amtw = Math.round(w * r);
       var e = Math.round(amt / 1.03) - amtw;
@@ -165,7 +165,7 @@
       output += '<div><b>Date:</b> ' + d + '</div>';
       output += '<div><b>Billno:</b> ' + bn + '</div><br>';
       output += 'TYPE &nbsp;&nbsp;&nbsp; Weight &nbsp;&nbsp;&nbsp; rate &nbsp;&nbsp;&nbsp; Amount<br>';
-      output += 'Gold Ornament &nbsp;&nbsp;&nbsp; ' + w + ' gm &nbsp;&nbsp;&nbsp; ' + r + ' &nbsp;&nbsp;&nbsp; ' + amtw + '<br><br><br><br>';
+      output += 'Silver Ornament &nbsp;&nbsp;&nbsp; ' + w + ' gm &nbsp;&nbsp;&nbsp; ' + r + ' &nbsp;&nbsp;&nbsp; ' + amtw + '<br><br><br><br>';
 
       if (e < 0) {
         output += 'Total Tax: ' + 2 * t + ' &nbsp;&nbsp;&nbsp;&nbsp; Discount: ' + (e * -1) + '<br>';
