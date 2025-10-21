@@ -17,6 +17,27 @@
       margin-bottom: 20px;
     }
 
+    .button-row {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .button-row input[type="button"] {
+      background-color: #b77218;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-row input[type="button"]:hover {
+      background-color: #9a5e12;
+    }
+
     form {
       background-color: #fff;
       border: 1px solid #d4af37;
@@ -25,41 +46,23 @@
       max-width: 400px;
       margin: auto;
       box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-    }
-
-    form label, form input {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
+      font-weight: 600;
     }
 
     form label {
+      display: block;
+      margin-bottom: 10px;
       font-weight: 600;
-      margin-bottom: 5px;
     }
 
-    input[type="text"] {
+    form input[type="text"] {
+      width: 100%;
       padding: 8px;
       font-size: 14px;
       border: 1px solid #d4af37;
       border-radius: 4px;
       box-sizing: border-box;
-    }
-
-    input[type="button"] {
-      background-color: #b77218;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      margin: 5px 3px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    input[type="button"]:hover {
-      background-color: #9a5e12;
+      font-weight: normal;
     }
 
     .output-container {
@@ -80,28 +83,97 @@
       color: #b77218;
       margin-bottom: 15px;
     }
+
+    /* Hide fields by default */
+    .form-field {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <h1>जिस चिज को खली रखना है रख दो</h1>
 
-  <form id="jewellerForm">
-    <label>राशि : <input type="text" id="firstNumber" /></label>
-    <label>भाव: <input type="text" id="secondNumber" /></label>
-    <label>वजन: <input type="text" id="weight" /></label>
-    <label>मेकिंग चार्ज: <input type="text" id="making" /></label>
-    <label>Date: <input type="text" id="date" name="Date"></label>
-    <label>Billno: <input type="text" id="billno" name="billno"></label>
+  <div class="button-row">
+    <input type="button" value="सोना" onclick="prepareForm('gold')" />
+    <input type="button" value="चांदी" onclick="prepareForm('silver')" />
+    <input type="button" value="वजन पता है" onclick="prepareForm('weight')" />
+    <input type="button" value="जीएसटी नहीं दूंगा" onclick="prepareForm('gstn')" />
+  </div>
 
-    <input type="button" onClick="Gold()" value="सोना" />
-    <input type="button" onClick="Silver()" value="चांदी" />
-    <input type="button" onClick="Weight()" value="वजन पता है" />
-    <input type="button" onClick="gstn()" value="जीएसटी नहीं दूंगा" />
+  <form id="jewellerForm">
+    <label id="label_firstNumber" class="form-field">राशि : <input type="text" id="firstNumber" /></label>
+    <label id="label_secondNumber" class="form-field">भाव: <input type="text" id="secondNumber" /></label>
+    <label id="label_weight" class="form-field">वजन: <input type="text" id="weight" /></label>
+    <label id="label_making" class="form-field">मेकिंग चार्ज: <input type="text" id="making" /></label>
+    <label id="label_date" class="form-field">Date: <input type="text" id="date" name="Date" /></label>
+    <label id="label_billno" class="form-field">Billno: <input type="text" id="billno" name="billno" /></label>
+    
+    <div style="text-align:center; margin-top: 15px;">
+      <input type="button" value="Calculate" onclick="performCalculation()" />
+    </div>
   </form>
 
   <div class="output-container" id="output"></div>
 
   <script>
+    // Which calculation is active
+    let currentCalc = '';
+
+    // Map calculation to fields to show
+    const fieldsByCalc = {
+      gold: ['firstNumber', 'secondNumber', 'weight', 'date', 'billno'],
+      silver: ['firstNumber', 'secondNumber', 'weight', 'date', 'billno'],
+      weight: ['secondNumber', 'weight', 'making', 'date', 'billno'],
+      gstn: ['firstNumber', 'secondNumber', 'weight']
+    };
+
+    // Map buttons to function names
+    const functionByCalc = {
+      gold: Gold,
+      silver: Silver,
+      weight: Weight,
+      gstn: gstn
+    };
+
+    function prepareForm(calc) {
+      currentCalc = calc;
+      // Hide all fields first
+      const allFields = ['firstNumber', 'secondNumber', 'weight', 'making', 'date', 'billno'];
+      allFields.forEach(field => {
+        document.getElementById('label_' + field).style.display = 'none';
+      });
+
+      // Show required fields for current calculation
+      const fieldsToShow = fieldsByCalc[calc] || [];
+      fieldsToShow.forEach(field => {
+        document.getElementById('label_' + field).style.display = 'block';
+      });
+
+      // Clear output and inputs
+      document.getElementById('output').innerHTML = '';
+      clearInputs();
+    }
+
+    function clearInputs() {
+      const allFields = ['firstNumber', 'secondNumber', 'weight', 'making', 'date', 'billno'];
+      allFields.forEach(field => {
+        document.getElementById(field).value = '';
+      });
+    }
+
+    function performCalculation() {
+      if (currentCalc && functionByCalc[currentCalc]) {
+        functionByCalc[currentCalc]();
+      } else {
+        alert('कृपया ऊपर से एक विकल्प चुनें।');
+      }
+    }
+
+    // Your existing calculation functions (Gold, Silver, Weight, gstn)
+    // Keep the same code from your latest JavaScript, no need to repeat here
+    /* Paste your already provided Gold(), Silver(), Weight(), gstn() functions here */
+    
+    // For brevity, adding minimal example to illustrate:
     function outputResult(text) {
       document.getElementById('output').innerHTML = text;
     }
@@ -109,7 +181,7 @@
     function Gold() {
       var amt = document.getElementById("firstNumber").value;
       var r = document.getElementById("secondNumber").value;
-      var wa = document.getElementById("weight").value==null?amt / (1.03 * r):document.getElementById("weight").value;;
+      var wa = amt / (1.03 * r);
       var w = parseFloat(wa).toFixed(2);
       var amtw = Math.round(w * r);
       var e = Math.round(amt / 1.03) - amtw;
@@ -147,7 +219,7 @@
     function Silver() {
       var amt = document.getElementById("firstNumber").value;
       var r = document.getElementById("secondNumber").value;
-    var wa = document.getElementById("weight").value==null?amt / (1.03 * r):document.getElementById("weight").value;
+      var wa = amt / (1.03 * r);
       var w = Math.round(wa * 2 + 0.5) / 2;
       var amtw = Math.round(w * r);
       var e = Math.round(amt / 1.03) - amtw;
